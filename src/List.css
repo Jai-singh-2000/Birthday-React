@@ -1,0 +1,42 @@
+#person{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    margin: 0.8rem 0;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.details{
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.details h4,p{
+    padding-left: 1rem;
+}
+
+
+
+span{
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+i{
+    color: gray;
+}
+
+i:hover{
+    color: red;
+}

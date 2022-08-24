@@ -1,32 +1,68 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import data from './data';
-import List from "./List";
+import imageArr from "./components/Image";
+import List from "./components/List";
+import Form from './components/Form';
+import PageNotFound from './components/PageNotFound';
+import {Routes,Route} from "react-router-dom";
 
 function App() {
-  const [people,setPeople]=useState(data);
+  const [people,setPeople]=useState([]);
+ 
   const deletePerson=(personId)=>{
-    
     let newList=people.filter((user)=>{
       return user.id!==personId;
-    })
-    
+    })   
     setPeople(newList);
+
   }
+
+  const addPerson=(personObj)=>{
+     let image=imageArr[people.length].image;
+     personObj.image=image;
+
+     setPeople([...people,personObj])
+  }
+
+  const updateLocalStorage=(people)=>{
+    localStorage.setItem("birthdays",JSON.stringify(people))
+  }
+
+  useEffect(()=>{
+    let response=localStorage.getItem("birthdays");
+    if(response)
+    {
+      let data=JSON.parse(response);
+      setPeople(data);
+    }else{
+
+      console.log("No data")
+    }
+  },[])
+
+  useEffect(()=>{
+    updateLocalStorage(people);
+  },[people])
+  
   return (
     <main>
+
       <section className="container">
-        <h3>{people.length} Birthdays today</h3>
+        
+        <Routes>
 
-      
-        <List people={people} onDelete={deletePerson}/>
+        <Route path="/" element={<List people={people} onDelete={deletePerson}/>}/>
+        
+        <Route path="/form" element={<Form addPerson={addPerson} people={people}/>}/>
 
-        <div className='button-container'>
-        <button type="button">Add Birthday</button>
-        </div>
-      
+        <Route path="*" element={<PageNotFound/>}/>
+               
+        </Routes>
       </section>
+      
     </main>
+
+    
   );
 }
 

@@ -11,6 +11,9 @@ main{
     align-items: center;
 }
 
+a{
+    text-decoration: none;
+}
 .container{
     min-height: 5rem;
     width: 24rem;
@@ -43,4 +46,34 @@ button{
     padding: 0.5rem 0;
     font-weight: 400;
     font-size: 1rem;
+}
+
+.input-box{
+    margin: 1rem 0;
+}
+label{
+    margin-left: 1rem;
+    color:gray;
+    font-weight: 600;
+  
+}
+
+input[type="text"]{
+    width: 77%;
+    padding:0.4rem 0;
+    margin-left: 0.5rem;
+    outline-color: grey;
+}
+
+input[type="date"]{
+    width: 77%;
+    padding:0.4rem 0;
+    margin-left: 1rem;
+    font-size: 1rem;
+    outline-color: grey;
+}
+    
+.text-center{
+    display: flex;
+    justify-content: center;
 }
